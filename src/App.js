@@ -1,23 +1,18 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css'
-import CourseCard from './components/CourseCard'
-import ModuleList from './components/ModuleList'
-
-
+import React from 'react'
+//import logo from './logo.svg'
+//import './App.css'
 import 'bootstrap/dist/css/bootstrap.css'
+//import HelloWorld from "./components/HelloWorld"
+import CourseCard from "./components/CourseCard"
+import ModuleList from "./components/ModuleList";
+import WhiteBoard from "./components/WhiteBoard";
 
 function App() {
-  return (
-   <div className="container">
-      <h1>Whiteboard</h1>
-      <ModuleList/>
-       <div className="card-deck">
-         <CourseCard/>
-         <CourseCard/>
-       </div>
-   </div>
-  );
+    return (
+        <div className="container">
+            <WhiteBoard/>
+        </div>
+    )
 }
 
-export default App;
+export default App
