@@ -7,14 +7,6 @@ export default class CourseService {
 
     createCourse(course){
         return axios.post(this.url, course).then(resp => resp.data)
-        /*fetch(this.url,
-            {
-                method: 'POST',
-                body: JSON.stringify(course),
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            }).then(resp => resp.json)*/
     }
 
     findAllCourses(){

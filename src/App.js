@@ -5,12 +5,12 @@ import 'bootstrap/dist/css/bootstrap.css'
 //import HelloWorld from "./components/HelloWorld"
 import CourseCard from "./components/CourseCard"
 import ModuleList from "./components/ModuleList";
-import WhiteBoard from "./components/WhiteBoard";
+import CourseManager from "./components/CourseManager";
 
 function App() {
     return (
         <div className="container">
-            <WhiteBoard/>
+            <CourseManager/>
         </div>
     )
 }

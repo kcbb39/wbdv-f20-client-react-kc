@@ -1,0 +1,41 @@
+.editorButtons{
+    padding: 5px 10px;
+}
+
+.locationButtons{
+    padding: 5px 5px;
+}
+
+.lessonEditor {
+    border: 2px solid gray;
+    border-radius: 5px;
+    margin: 5px;
+}
+
+.widgetInputs{
+    margin: 5px;
+}
+
+.deleteWidget{
+    float: right;
+}
+
+.nav-link{
+    margin: 5px;
+}
+
+.courseElement{
+    padding-right: 15%
+}
+
+.icon{
+    padding-right: 5px;
+}
+
+.btn{
+    padding: 5px 10px;
+}
+
+.navButtons{
+    padding: 5px 5px;
+}
