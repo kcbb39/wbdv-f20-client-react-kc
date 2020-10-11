@@ -1,5 +1,5 @@
 import React from "react";
-import {BrowserRouter as Router, Link, Route} from 'react-router-dom'
+import {BrowserRouter as Router, Link, Route, Redirect} from 'react-router-dom'
 import CourseTable from "./CourseTable";
 import CourseGrid from "./CourseGrid";
 import axios from "axios";
@@ -46,8 +46,9 @@ export default class CourseManager extends React.Component {
         return (
             <Router>
                 <div>
-                    <Link class="btn btn-secondary" to="/course/table">Table</Link>  |
-                    <Link class="btn btn-secondary" to="/course/grid">Grid</Link>
+                   <Route exact path="/">
+                       <Redirect to="/course/table"/>
+                   </Route>
                     <Route path="/course/table"
                            render={() => <CourseTable
                                selectCourse={this.selectCourse}
@@ -66,3 +67,8 @@ export default class CourseManager extends React.Component {
         )
     }
 }
+
+/*
+*  <Link class="btn btn-secondary" to="/course/table">Table</Link>  |
+                    <Link class="btn btn-secondary" to="/course/grid">Grid</Link>
+* */

@@ -29,7 +29,7 @@ export default class CourseEditor extends React.Component {
                     <div className="collapse navbar-collapse" id="navbarNav">
                         <ul className="navbar-nav">
                             <li>
-                                <a href="../index.js"><i className="fa fa-times-circle wbdv-close "/></a>
+                                <a href="/"><i className="fa fa-times-circle wbdv-close "/></a>
                             </li>
                             <li className="nav-item active">
                                 <h3>{this.props.course.title}</h3>

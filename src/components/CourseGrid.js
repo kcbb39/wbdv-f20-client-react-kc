@@ -22,43 +22,33 @@ const CourseGrid = ({courses, selectCourse, deleteCourse}) =>
                     </form>
                 </div>
             </nav>
-            <table>
-                <thead>
-                    <th>
-                        <a className="navbar-brand courseElement mr-sm-2 wbdv-header wbdv-title">Recent Courses</a>
-                    </th>
-                    <th>
-                        <div className="dropdown">
-                            <button className="btn btn-secondary courseElement dropdown-toggle wbdv-header wbdv-owner"
-                                    type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false">
-                                Owner
-                            </button>
-                            <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a className="dropdown-item" href="#">Me</a>
-                                <a className="dropdown-item" href="#">Another action</a>
-                                <a className="dropdown-item" href="#">Something else here</a>
-                            </div>
-                        </div>
-                    </th>
-                    <th>
-                        <div className="icons row">
-                            <Link class="icon" to="/course/grid"><i className="fa fa-table"/></Link>
-                            <Link class="icon" to="/course/table"><i className="fa fa-list"/></Link>
-                            <a href="#" className="icon"><i className="fa fa-sort"/></a>
-                        </div>
-                    </th>
-                </thead>
-                <tbody>
-                    <div className="card-deck row">
-                        {  courses.map((course, key) =>
-                            <CourseCard course={course}
-                                        selectCourse={selectCourse}
-                                        deleteCourse={deleteCourse}
-                                        key={key}/>)}
+            <nav className="navbar navbar-light">
+                <a className="navbar-brand courseElement mr-sm-2 wbdv-header wbdv-title">Recent Courses</a>
+                <div className="dropdown">
+                    <button className="btn btn-secondary courseElement dropdown-toggle wbdv-header wbdv-owner"
+                            type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                        Owner
+                    </button>
+                    <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a className="dropdown-item" href="#">Me</a>
+                        <a className="dropdown-item" href="#">Another action</a>
+                        <a className="dropdown-item" href="#">Something else here</a>
                     </div>
-                </tbody>
-            </table>
+                </div>
+                <div className="icons row">
+                    <Link class="icon" to="/course/grid"><i className="fa fa-table"/></Link>
+                    <Link class="icon" to="/course/table"><i className="fa fa-list"/></Link>
+                    <a href="#" className="icon"><i className="fa fa-sort"/></a>
+                </div>
+            </nav>
+                <div className="card-deck row col-sm-3 col-lg-6">
+                    {  courses.map((course, key) =>
+                        <CourseCard course={course}
+                                    selectCourse={selectCourse}
+                                    deleteCourse={deleteCourse}
+                                    key={key}/>)}
+                </div>
         </div>
     )
 export default CourseGrid

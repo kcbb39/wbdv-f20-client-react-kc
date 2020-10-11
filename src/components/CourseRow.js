@@ -37,7 +37,7 @@ export default  class CourseRow extends React.Component {
                         </a>
                     </td>
                     <td>
-                        <i className="fa fa-pencil icon" onClick={function() {this.state.editing = !this.state.editing}}/>
+                        <i className="fa fa-pencil icon" onClick={() => {this.setState({editing: !this.state.editing})}}/>
                     </td>
                 </tr>
             )
@@ -60,9 +60,7 @@ export default  class CourseRow extends React.Component {
                         <a onClick={() => this.props.deleteCourse(this.props.course._id)}>
                             <i className="fa fa-times icon"/>
                         </a>
-                        <i className="fa fa-pencil icon" onClick={function() {
-                            this.state.editing = true
-                            }}/>
+                        <i className="fa fa-pencil icon" onClick={() => this.setState({editing: true})}/>
                     </td>
                 </tr>
             )
