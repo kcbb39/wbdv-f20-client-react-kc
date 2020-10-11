@@ -21,8 +21,12 @@ export default class CourseManager extends React.Component {
     selectCourse = course =>
         this.setState({selectedCourse: course})
 
-    deleteCourse(id){
-        this.state.courseService.deleteCourse(id).then(this.render())
+    deleteCourse = async (id) => {
+        await this.state.courseService.deleteCourse(id)
+        let allCourses = await this.state.courseService.findAllCourses()
+        this.setState({
+            courses: allCourses
+        })
     }
 
     componentDidMount() {
@@ -52,7 +56,7 @@ export default class CourseManager extends React.Component {
                     <Route path="/course/grid"
                            render={() => <CourseGrid
                                selectCourse={this.selectCourse}
-                               deleteCourse={this.deleteCourse()}
+                               deleteCourse={this.deleteCourse}
                                courses={this.state.courses}/>}/>
                     <Route path="/course/edit/:id"
                            render={() => <CourseEditor

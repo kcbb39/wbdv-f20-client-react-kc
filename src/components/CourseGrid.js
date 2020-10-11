@@ -2,7 +2,7 @@ import React from 'react'
 import CourseCard from "./CourseCard";
 import {Link} from "react-router-dom";
 
-const CourseGrid = ({courses, selectCourse}) =>
+const CourseGrid = ({courses, selectCourse, deleteCourse}) =>
     (
         <div className="container">
             <nav className="navbar navbar-dark bg-primary">
@@ -13,7 +13,6 @@ const CourseGrid = ({courses, selectCourse}) =>
                         <span className="navbar-toggler-icon wbdv-field wbdv-hamburger"/>
                     </button>
                     <a className="navbar-brand navButtons wbdv-label mr-sm-2 wbdv-course-manager" href="#">Course Manager</a>
-                    <a className="btn btn-dark navButtons" href="..\index.js">Home</a>
                     <form className="form-inline navButtons sm-2">
                         <input className="form-control mr-sm-2 wbdv-field wbdv-new-course" type="search"
                                placeholder="New Course Title" aria-label="New Course Title"/>
@@ -25,38 +24,41 @@ const CourseGrid = ({courses, selectCourse}) =>
             </nav>
             <table>
                 <thead>
-                <th>
-                    <a className="navbar-brand courseElement mr-sm-2 wbdv-header wbdv-title">Course Title</a>
-                </th>
-                <th>
-                    <div className="dropdown">
-                        <button className="btn btn-secondary courseElement dropdown-toggle wbdv-header wbdv-owner"
-                                type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false">
-                            Owner
-                        </button>
-                        <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a className="dropdown-item" href="#">Me</a>
-                            <a className="dropdown-item" href="#">Another action</a>
-                            <a className="dropdown-item" href="#">Something else here</a>
+                    <th>
+                        <a className="navbar-brand courseElement mr-sm-2 wbdv-header wbdv-title">Recent Courses</a>
+                    </th>
+                    <th>
+                        <div className="dropdown">
+                            <button className="btn btn-secondary courseElement dropdown-toggle wbdv-header wbdv-owner"
+                                    type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                Owner
+                            </button>
+                            <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a className="dropdown-item" href="#">Me</a>
+                                <a className="dropdown-item" href="#">Another action</a>
+                                <a className="dropdown-item" href="#">Something else here</a>
+                            </div>
                         </div>
-                    </div>
-                </th>
-                <th>
-                    <div className="icons">
-                        <Link class="icon" to="/course/grid"><i className="fa fa-table"/></Link>
-                        <Link class="icon" to="/course/table"><i className="fa fa-list"/></Link>
-                        <a href="#" className="icon"><i className="fa fa-sort"/></a>
-                    </div>
-                </th>
+                    </th>
+                    <th>
+                        <div className="icons row">
+                            <Link class="icon" to="/course/grid"><i className="fa fa-table"/></Link>
+                            <Link class="icon" to="/course/table"><i className="fa fa-list"/></Link>
+                            <a href="#" className="icon"><i className="fa fa-sort"/></a>
+                        </div>
+                    </th>
                 </thead>
+                <tbody>
+                    <div className="card-deck row">
+                        {  courses.map((course, key) =>
+                            <CourseCard course={course}
+                                        selectCourse={selectCourse}
+                                        deleteCourse={deleteCourse}
+                                        key={key}/>)}
+                    </div>
+                </tbody>
             </table>
-            <div className="card-deck row">
-                {  courses.map((course, key) =>
-                    <CourseCard course={course}
-                                selectCourse={selectCourse}
-                                key={key}/>)}
-            </div>
         </div>
     )
 export default CourseGrid

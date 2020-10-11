@@ -1,5 +1,7 @@
 import React from 'react'
 import {Link} from "react-router-dom";
+import "../course.style.css"
+
 
 export default class ImageWidget extends React.Component {
     render() {

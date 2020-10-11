@@ -1,4 +1,6 @@
 import React from "react";
+import "../course.style.css"
+
 
 export default class ParagraphWidget extends React.Component {
     render() {

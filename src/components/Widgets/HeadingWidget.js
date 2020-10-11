@@ -1,4 +1,5 @@
-import React from "react";
+import React from "react"
+import "../course.style.css"
 
 export default class HeadingWidget extends React.Component {
     render() {
