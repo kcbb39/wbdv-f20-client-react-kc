@@ -11,6 +11,7 @@ export default  class CourseRowContainer extends React.Component {
         super(props)
         this.state = {
                       editing: false,
+                      title: '',
                       courseService: new CourseService()}
     }
 
@@ -21,10 +22,10 @@ export default  class CourseRowContainer extends React.Component {
                     <td>
                         <div className="form-group row">
                             <a href="#" className="icon"><i className="fa fa-file"/></a>
-                            <input type="text" placeholder={this.props.title} className="form-control" id="heading"/>
-                            <i className="fa fa-plus-circle" onClick={function(){
+                            <input type="text" placeholder={this.props.title} className="form-control" id="heading" onChanged={(event)=> this.props.titleChanged(event)}/>
+                            <i className="fa fa-plus-circle" onClick={() => {
                                 this.state.editing = false
-                                this.props.title = "WORKED BUT HOW"
+                                this.props.updateCourse(this.state.title)
                             }}/>
                         </div>
                     </td>

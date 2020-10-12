@@ -8,6 +8,7 @@ export default class CourseCardContainer extends React.Component {
         super(props)
         this.state = {
             editing: false,
+            title: '',
             courseService: new CourseService()}
     }
 
@@ -18,10 +19,10 @@ export default class CourseCardContainer extends React.Component {
                     <img className="card-img-top"
                          src="https://picsum.photos/300/200"/>
                     <div className="card-body">
-                        <input type="text" placeholder={this.props.title} className="form-control" id="heading"/>
-                        <i className="fa fa-plus-circle" onClick={function(){
+                        <input type="text" placeholder={this.props.title} className="form-control" id="heading" onChanged={(event) => {this.props.titleChanged(event)}}/>
+                        <i className="fa fa-plus-circle" onClick={() => {
                             this.state.editing = false
-                            this.props.title = "WORKED BUT HOW"
+                            this.props.updateCourse(this.state.title)
                         }}/>
                         <div>
                             <Link className="btn btn-primary"

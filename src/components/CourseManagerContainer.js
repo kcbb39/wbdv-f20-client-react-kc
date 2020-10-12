@@ -52,6 +52,14 @@ export default class CourseManagerContainer extends React.Component {
         })
     }
 
+    async updateCourse(title){
+        await this.state.courseService.updateCourse({title: title})
+        let allCourses = await this.state.courseService.findAllCourses()
+        this.setState({
+            courses: allCourses
+        })
+    }
+
     componentDidMount() {
         axios.get('https://wbdv-generic-server.herokuapp.com/api/001299573/courses')
             .then(
@@ -95,11 +103,13 @@ export default class CourseManagerContainer extends React.Component {
                            render={() => <CourseTableComponent
                                selectCourse={this.selectCourse}
                                deleteCourse={this.deleteCourse}
+                               updateCourse={this.updateCourse}
                                courses={this.state.courses}/>}/>
                     <Route path="/course/grid"
                            render={() => <CourseGridComponent
                                selectCourse={this.selectCourse}
                                deleteCourse={this.deleteCourse}
+                               updateCourse={this.updateCourse}
                                courses={this.state.courses}/>}/>
                     <Route path="/course/edit/:id"
                            render={() => <CourseEditorContainer
