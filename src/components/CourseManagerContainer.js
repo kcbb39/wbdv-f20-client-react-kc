@@ -32,10 +32,10 @@ export default class CourseManagerContainer extends React.Component {
 
     titleChanged(event) {
         this.setState({title: event.target.value});
-        console.log(event.target.value);
+        console.log(this.state.title);
     }
 
-    createCourse = async(title) => {
+    async createCourse(title) {
         await this.state.courseService.createCourse({title: title, modules: [
                 {
                     "title": "Module 1 - jQuery",

@@ -25,7 +25,7 @@ const CourseGridComponent = ({courses, selectCourse, deleteCourse}) =>
                     <a href="#" className="icon"><i className="fa fa-sort"/></a>
                 </div>
             </nav>
-            <div className="card-deck">
+            <div className="card-deck row-cols-xs-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-6">
                 {  courses.map((course, key) =>
                     <CourseCardContainer course={course}
                                          selectCourse={selectCourse}

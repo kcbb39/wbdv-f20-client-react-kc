@@ -15,7 +15,7 @@ export default class CourseCardContainer extends React.Component {
     render() {
         if(this.state.editing){
             return (
-                <div className="card">
+                <div className="card " style={{width: '18rem'}}>
                     <img className="card-img-top"
                          src="https://picsum.photos/300/200"/>
                     <div className="card-body">
@@ -41,7 +41,7 @@ export default class CourseCardContainer extends React.Component {
         }
         else {
             return (
-                <div className="card">
+                <div className="card" style={{width: '18rem'}}>
                     <img className="card-img-top"
                          src="https://picsum.photos/300/200"/>
                     <div className="card-body">
