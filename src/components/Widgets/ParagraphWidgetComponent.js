@@ -2,9 +2,7 @@ import React from "react";
 import "../course.style.css"
 
 
-export default class ParagraphWidget extends React.Component {
-    render() {
-        return (
+const ParagraphWidgetComponent = () => (
             <div className="lessonEditor col-12">
                 <div className="contentWidgets form-group row">
                     <div className="coll-11"><h4>Paragraph Widget</h4></div>
@@ -52,6 +50,5 @@ export default class ParagraphWidget extends React.Component {
                                                    placeholder should be dummy Paragraph text" rows="3"/>
                 </div>
             </div>
-        )
-    }
-}
+)
+export default ParagraphWidgetComponent

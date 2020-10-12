@@ -3,14 +3,14 @@ import React from 'react'
 //import './App.css'
 import 'bootstrap/dist/css/bootstrap.css'
 //import HelloWorld from "./components/HelloWorld"
-import CourseCard from "./components/CourseCard"
-import ModuleList from "./components/ModuleList";
-import CourseManager from "./components/CourseManager";
+import CourseCardContainer from "./components/CourseCardContainer"
+import ModuleListContainer from "./components/ModuleListContainer";
+import CourseManagerContainer from "./components/CourseManagerContainer";
 
 function App() {
     return (
         <div className="container">
-            <CourseManager/>
+            <CourseManagerContainer/>
         </div>
     )
 }

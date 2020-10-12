@@ -1,10 +1,7 @@
 import React from "react";
 
-//const CourseCard = ({course, selectCourse}) =>
-export default class LessonTabs extends React.Component {
-
-    render() {
-        return (
+//const CourseCardContainer = ({course, selectCourse}) =>
+const LessonTabsComponent = () => (
             <ul className="navbar-nav">
                 <li className="nav-item">
                     <a className="nav-link wbdv-lesson-tabs" href="#">Build</a>
@@ -28,6 +25,5 @@ export default class LessonTabs extends React.Component {
                     <a href="#" className="wbdv-lesson-add-btn"><i className="fa fa-plus"/></a>
                 </li>
             </ul>
-        );
-    }
-}
+        )
+export default LessonTabsComponent

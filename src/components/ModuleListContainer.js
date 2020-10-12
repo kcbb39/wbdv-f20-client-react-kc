@@ -1,21 +1,13 @@
 import React from 'react'
-import ModuleListItem from './ModuleListItem';
+import ModuleListItemComponent from './ModuleListItemContainer';
 import CourseService from "../services/CourseService";
 
-export default class ModuleList extends React.Component {
+export default class ModuleListContainer extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
             _id: 'no id',
             module: '',
-            modules: [
-                {title: 'Module 1 - jQuery', id: 123},
-                {title: 'Module 2 - React', id: 234},
-                {title: 'Module 3 - Redux', id: 345},
-                {title: 'Module 4 - Angular', id: 456},
-                {title: 'Module 5 - Node.js', id: 567},
-                {title: 'Module 6 - MongoDB', id: 678},
-            ],
             courseService: new CourseService()
         }
         this.titleChanged = this.titleChanged.bind(this);
@@ -40,21 +32,13 @@ export default class ModuleList extends React.Component {
     renderListOfModules() {
         return this.props.modules
             .map(module =>
-                <ModuleListItem title={module.title} key={module.id}/>
+                <ModuleListItemComponent title={module.title} key={module.id}/>
             )
     }
 
     render() {
         return (
             <div>
-                <input className="form-control" onChange={this.titleChanged}
-                       value={this.state.module.title}
-                       placeholder="title"/>
-                <button className="btn btn-primary btn-block"
-                        onClick={this.createModule}>
-                    <i className="fa fa-plus"/>
-                </button>
-                <div>{this.state._id}</div>
                 <ul className="list-group">
                     {this.renderListOfModules()}
                 </ul>

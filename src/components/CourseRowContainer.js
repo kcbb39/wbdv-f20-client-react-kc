@@ -6,7 +6,7 @@ import "./course.style.css"
 import CourseService from "../services/CourseService";
 
 
-export default  class CourseRow extends React.Component {
+export default  class CourseRowContainer extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -19,7 +19,7 @@ export default  class CourseRow extends React.Component {
             return (
                 <tr>
                     <td>
-                        <div>
+                        <div className="form-group row">
                             <a href="#" className="icon"><i className="fa fa-file"/></a>
                             <input type="text" placeholder={this.props.title} className="form-control" id="heading"/>
                             <i className="fa fa-plus-circle" onClick={function(){

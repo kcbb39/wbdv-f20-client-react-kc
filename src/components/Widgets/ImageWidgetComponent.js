@@ -3,9 +3,7 @@ import {Link} from "react-router-dom";
 import "../course.style.css"
 
 
-export default class ImageWidget extends React.Component {
-    render() {
-        return (
+const ImageWidgetComponent = () => (
             <div className="lessonEditor col-12">
                 <div className="contentWidgets form-group row">
                     <div className="coll-11"><h4>Image Widget</h4></div>
@@ -61,5 +59,4 @@ export default class ImageWidget extends React.Component {
                 </div>
             </div>
         )
-    }
-}
+export default ImageWidgetComponent

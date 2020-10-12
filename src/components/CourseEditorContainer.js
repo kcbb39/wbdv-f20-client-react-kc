@@ -1,12 +1,12 @@
 import React from 'react'
 import "font-awesome/css/font-awesome.css"
-import ModuleList from "./ModuleList";
+import ModuleListContainer from "./ModuleListContainer";
 import "./course.style.css"
-import LessonTabs from "./LessonTabs";
-import WidgetList from "./WidgetList";
-import TopicPills from "./TopicPills";
+import LessonTabsComponent from "./LessonTabsComponent";
+import WidgetListComponent from "./WidgetListComponent";
+import TopicPillsComponent from "./TopicPillsComponent";
 
-export default class CourseEditor extends React.Component {
+export default class CourseEditorContainer extends React.Component {
     constructor(props) {
         super(props)
         this.state = { selectedModule:
@@ -14,9 +14,6 @@ export default class CourseEditor extends React.Component {
 
     }
 
-    selectLesson = lesson =>
-        this.setState({ selectedLesson: lesson,
-            selectedTopic: lesson.topics[0]})
 
     render() {
         return (
@@ -34,22 +31,22 @@ export default class CourseEditor extends React.Component {
                             <li className="nav-item active">
                                 <h3>{this.props.course.title}</h3>
                             </li>
-                            <LessonTabs/>
+                            <LessonTabsComponent/>
                         </ul>
                     </div>
                 </nav>
                 <div className="row">
                     <div className="col-3">
-                        <ModuleList modules=
+                        <ModuleListContainer modules=
                                         {this.props.course.modules}/></div>
                     <div className="Lessons col-8 d-flex">
                         <div className="col-12 wbdv-topic-pill-list">
-                            <TopicPills/>
+                            <TopicPillsComponent/>
                             <div className="editorButtons col-8">
                                 <a href="#" className="btn btn-success">Save</a>
                                 <a href="#" className="btn btn-dark">Preview</a>
                             </div>
-                            <WidgetList/>
+                            <WidgetListComponent/>
                         </div>
                     </div>
                 </div>
