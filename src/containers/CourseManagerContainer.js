@@ -1,7 +1,7 @@
 import React from "react";
 import {BrowserRouter as Router, Route, Redirect} from 'react-router-dom'
-import CourseTableComponent from "./CourseTableComponent";
-import CourseGridComponent from "./CourseGridComponent";
+import CourseTableComponent from "../components/CourseTableComponent";
+import CourseGridComponent from "../components/CourseGridComponent";
 import axios from "axios";
 import CourseEditorContainer from "./CourseEditorContainer";
 import "../services/CourseService"

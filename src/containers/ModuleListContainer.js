@@ -41,6 +41,10 @@ export default class ModuleListContainer extends React.Component {
             <div>
                 <ul className="list-group">
                     {this.renderListOfModules()}
+                    <li className="btn btn-info">
+                        <i className="fa fa-plus icon"/>
+                        New Module
+                    </li>
                 </ul>
             </div>
         )

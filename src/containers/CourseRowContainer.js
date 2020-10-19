@@ -2,7 +2,7 @@
 import React from 'react'
 import {Link} from "react-router-dom";
 import "font-awesome/css/font-awesome.css"
-import "./course.style.css"
+import "../components/course.style.css"
 import CourseService from "../services/CourseService";
 
 
