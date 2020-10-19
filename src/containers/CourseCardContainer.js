@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link} from "react-router-dom";
-import "./course.style.css"
+import "../components/course.style.css"
 import CourseService from "../services/CourseService";
 
 export default class CourseCardContainer extends React.Component {
