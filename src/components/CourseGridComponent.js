@@ -1,5 +1,5 @@
 import React from 'react'
-import CourseCardContainer from "./CourseCardContainer";
+import CourseCardContainer from "../containers/CourseCardContainer";
 import {Link} from "react-router-dom";
 
 const CourseGridComponent = ({courses, selectCourse, deleteCourse}) =>

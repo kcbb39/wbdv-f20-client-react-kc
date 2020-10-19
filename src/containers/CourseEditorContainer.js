@@ -1,10 +1,10 @@
 import React from 'react'
 import "font-awesome/css/font-awesome.css"
 import ModuleListContainer from "./ModuleListContainer";
-import "./course.style.css"
-import LessonTabsComponent from "./LessonTabsComponent";
-import WidgetListComponent from "./WidgetListComponent";
-import TopicPillsComponent from "./TopicPillsComponent";
+import "../components/course.style.css"
+import LessonTabsComponent from "../components/LessonTabsComponent";
+import WidgetListComponent from "../components/WidgetListComponent";
+import TopicPillsComponent from "../components/TopicPillsComponent";
 
 export default class CourseEditorContainer extends React.Component {
     constructor(props) {
@@ -29,12 +29,11 @@ export default class CourseEditorContainer extends React.Component {
                     <div className="collapse navbar-collapse" id="navbarNav">
                         <ul className="navbar-nav">
                             <li>
-                                <a href="/"><i className="fa fa-times-circle wbdv-close "/></a>
+                                <a href="/"><i className="fa fa-times-circle wbdv-close icon"/></a>
                             </li>
                             <li className="nav-item active">
                                 <h3>{this.props.course.title}</h3>
                             </li>
-                            <LessonTabsComponent/>
                         </ul>
                     </div>
                 </nav>
@@ -44,7 +43,8 @@ export default class CourseEditorContainer extends React.Component {
                         course={this.state.course}/></div>
                     <div className="Lessons col-8 d-flex">
                         <div className="col-12 wbdv-topic-pill-list">
-                            <TopicPillsComponent/>
+                            <LessonTabsComponent module={this.state.selectedModule} moduleId={this.state.selectedModule.id}/>
+                            <TopicPillsComponent lesson={this.state.selectedLesson} lessonId={this.state.selectedLesson.id}/>
                             <div className="editorButtons col-8">
                                 <a href="#" className="btn btn-success">Save</a>
                                 <a href="#" className="btn btn-dark">Preview</a>

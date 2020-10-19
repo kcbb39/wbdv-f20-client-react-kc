@@ -1,5 +1,5 @@
 import React from 'react'
-import CourseRowContainer from "./CourseRowContainer";
+import CourseRowContainer from "../containers/CourseRowContainer";
 import {Link} from "react-router-dom";
 
 const CourseTableComponent = ({courses, selectCourse, deleteCourse}) =>
