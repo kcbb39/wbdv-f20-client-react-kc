@@ -1,6 +1,7 @@
 import React from 'react'
 import ModuleListItemComponent from './ModuleListItemContainer';
 import CourseService from "../services/CourseService";
+import ModuleService from "../services/ModuleService";
 
 export default class ModuleListContainer extends React.Component {
     constructor(props) {
@@ -8,10 +9,24 @@ export default class ModuleListContainer extends React.Component {
         this.state = {
             _id: 'no id',
             module: '',
-            courseService: new CourseService()
+            modules: [],
+            course: this.props.course,
+            courseService: new CourseService(),
+            moduleService: new ModuleService()
         }
         this.titleChanged = this.titleChanged.bind(this);
         this.createModule = this.createModule.bind(this);
+    }
+
+    selectModule = module =>
+        this.setState({module: module})
+
+    deleteModule = async (id) => {
+        await this.state.moduleService.deleteModule(id)
+        let allModules = await this.state.moduleService.findAllModulesForCourse(this.state.course._id)
+        this.setState({
+            modules: allModules
+        })
     }
 
     titleChanged(event) {
@@ -20,10 +35,10 @@ export default class ModuleListContainer extends React.Component {
     }
 
     createModule() {
-        this.state.courseService.createCourse({title: this.state.module.title,
-            modules: this.state.modules}).then(result => {
+        this.state.moduleService.createModule(this.state.course.id, {title: "new Module",
+            lessons: []}).then((result) => {
                 console.log(result)
-                this.setState({_id: result.data._id})
+                this.setState({id: result.data.id})
             }
         )
         console.log(this.state.module)
@@ -32,7 +47,8 @@ export default class ModuleListContainer extends React.Component {
     renderListOfModules() {
         return this.props.modules
             .map(module =>
-                <ModuleListItemComponent title={module.title} key={module.id}/>
+                <ModuleListItemComponent title={module.title} key={module.id} deleteModule={this.deleteModule}
+                selectModule={this.selectModule} module={module}/>
             )
     }
 
@@ -41,6 +57,10 @@ export default class ModuleListContainer extends React.Component {
             <div>
                 <ul className="list-group">
                     {this.renderListOfModules()}
+                    <li className="btn btn-info"  onClick={() => this.createModule()}>
+                        <i className="fa fa-plus icon"/>
+                        New Module
+                    </li>
                 </ul>
             </div>
         )

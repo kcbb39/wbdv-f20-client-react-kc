@@ -9,8 +9,11 @@ import TopicPillsComponent from "./TopicPillsComponent";
 export default class CourseEditorContainer extends React.Component {
     constructor(props) {
         super(props)
-        this.state = { selectedModule:
-                this.props.course.modules[0]}
+        this.state = {
+            course: this.props.course,
+            selectedModule: this.props.course.modules[0],
+            selectedLesson: this.props.course.modules[0].lessons[0]
+        }
 
     }
 
@@ -37,8 +40,8 @@ export default class CourseEditorContainer extends React.Component {
                 </nav>
                 <div className="row">
                     <div className="col-3">
-                        <ModuleListContainer modules=
-                                        {this.props.course.modules}/></div>
+                        <ModuleListContainer modules={this.props.course.modules}
+                        course={this.state.course}/></div>
                     <div className="Lessons col-8 d-flex">
                         <div className="col-12 wbdv-topic-pill-list">
                             <TopicPillsComponent/>
