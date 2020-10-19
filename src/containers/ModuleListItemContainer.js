@@ -13,6 +13,8 @@ export default class ModuleListItem extends React.Component {
             moduleService: new ModuleService()
         }
     }
+
+
     render() {
         if(this.state.editing){
             return (

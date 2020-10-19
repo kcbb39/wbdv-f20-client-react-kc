@@ -9,7 +9,7 @@ export default class ModuleListContainer extends React.Component {
         this.state = {
             _id: 'no id',
             module: '',
-            modules: [],
+            modules: this.props.modules,
             course: this.props.course,
             courseService: new CourseService(),
             moduleService: new ModuleService()
@@ -34,11 +34,11 @@ export default class ModuleListContainer extends React.Component {
         console.log(event.target.value);
     }
 
-    createModule() {
+    createModule = () => {
         this.state.moduleService.createModule(this.state.course.id, {title: "new Module",
             lessons: []}).then((result) => {
                 console.log(result)
-                this.setState({id: result.data.id})
+                this.setState({id: result.data._id})
             }
         )
         console.log(this.state.module)

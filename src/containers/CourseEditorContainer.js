@@ -43,8 +43,8 @@ export default class CourseEditorContainer extends React.Component {
                         course={this.state.course}/></div>
                     <div className="Lessons col-8 d-flex">
                         <div className="col-12 wbdv-topic-pill-list">
-                            <LessonTabsComponent module={this.state.selectedModule} moduleId={this.state.selectedModule.id}/>
-                            <TopicPillsComponent lesson={this.state.selectedLesson} lessonId={this.state.selectedLesson.id}/>
+                            <LessonTabsComponent module={this.state.selectedModule} moduleId={this.state.selectedModule.id} key={this.state.selectedModule.id}/>
+                            <TopicPillsComponent lesson={this.state.selectedLesson} lessonId={this.state.selectedLesson.id} key={this.state.selectedLesson.id}/>
                             <div className="editorButtons col-8">
                                 <a href="#" className="btn btn-success">Save</a>
                                 <a href="#" className="btn btn-dark">Preview</a>
