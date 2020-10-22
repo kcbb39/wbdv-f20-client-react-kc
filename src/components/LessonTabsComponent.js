@@ -3,7 +3,7 @@ import "./course.style.css"
 import CourseService from "../services/CourseService";
 import LessonService from "../services/LessonService";
 import ModuleListItemComponent from "../containers/ModuleListItemContainer";
-import LessonTab from "./LessonTab";
+import LessonComponent from "./LessonComponent";
 //const CourseCardContainer = ({course, selectCourse}) =>
 export default  class LessonTabsComponent extends React.Component {
     constructor(props) {
@@ -17,12 +17,31 @@ export default  class LessonTabsComponent extends React.Component {
         }
     }
 
+    selectLesson = lesson =>
+        this.setState({lesson: lesson})
+
+    deleteLesson = async (id) => {
+        await this.state.lessonService.deleteLesson(id)
+        let allLessons = await this.state.lessonService.findLessonsForModule(this.state.module._id)
+        console.log(allLessons)
+        this.setState({
+            lessons: allLessons
+        })
+    }
+
+    titleChanged(event) {
+        this.setState({lesson: {title: event.target.value}});
+        console.log(event.target.value);
+    }
 
 
     renderLessonTabs(){
             return this.state.module.lessons
                 .map(lesson =>
-                    <LessonTab title={lesson.title} key={lesson.id}/>
+                    <LessonComponent title={lesson.title} key={lesson._id}
+                                     deleteLesson={this.deleteLesson}
+                                     selectLesson={this.selectLesson}
+                                     titleChanged={this.titleChanged}/>
                 )
     }
 
@@ -37,9 +56,9 @@ export default  class LessonTabsComponent extends React.Component {
                     "id": 234
                 }
             ]})
-        let allCourses = await this.state.lessonService.findLessonsForModule(this.state.moduleId)
+        let allLessons = await this.state.lessonService.findLessonsForModule(this.state.moduleId)
         this.setState({
-            courses: allCourses
+            lessons: allLessons
         })
     }
 

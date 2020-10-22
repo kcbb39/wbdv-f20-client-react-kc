@@ -19,7 +19,8 @@ export default class ModuleListItem extends React.Component {
         if(this.state.editing){
             return (
                 <li className="list-group-item">
-                    <input type="text" placeholder={this.props.title} className="form-control" id="heading" onChanged={(event)=> this.props.titleChanged(event)}/>
+                    <input type="text" placeholder={this.props.title} className="form-control" id="heading"
+                           onChange={(event)=> this.props.titleChanged(event)}/>
                     <i className="fa fa-plus-circle" onClick={() => {
                         this.state.editing = false
                         this.props.updateModule(this.state.selectedModule.id, this.state.title)

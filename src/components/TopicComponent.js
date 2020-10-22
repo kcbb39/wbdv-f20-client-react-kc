@@ -2,13 +2,15 @@ import React from 'react'
 import "font-awesome/css/font-awesome.css"
 import "./course.style.css"
 
-export default class LessonTab extends React.Component {
+export default class TopicComponent extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
             editing: false,
             title: this.props.title,
-            selectedLesson: null,
+            selectedTopic: null,
+            lesson: this.props.lesson,
+            lessonId: this.props.lesson.id
         }
     }
 
@@ -20,7 +22,7 @@ export default class LessonTab extends React.Component {
                            onChanged={(event) => this.props.titleChanged(event)}/>
                     <i className="fa fa-plus-circle" onClick={() => {
                         this.state.editing = false
-                        this.props.updateLesson(this.state.id, this.state.title)
+                        this.props.updateTopic(this.state.lessonId, this.state.title)
                     }}/>
                     <i className="fa fa-pencil icon" onClick={() => {
                         this.setState({editing: false})
@@ -32,8 +34,8 @@ export default class LessonTab extends React.Component {
                 <li className="nav-item">
                     <a className="nav-link">
                         <i className="fa fa-times icon" onClick={() => {
-                            this.props.selectLesson()
-                            this.props.deleteLesson(this.props.selectedLesson.id)
+                            this.props.selectTopic()
+                            this.props.deleteTopic(this.selectedTopic.id)
                         }}/>
                         {this.props.title}
                         <i className="fa fa-pencil icon" onClick={() => {

@@ -22,8 +22,10 @@ export default class ModuleListContainer extends React.Component {
         this.setState({module: module})
 
     deleteModule = async (id) => {
+        console.log('HEERE')
         await this.state.moduleService.deleteModule(id)
         let allModules = await this.state.moduleService.findAllModulesForCourse(this.state.course._id)
+        console.log(allModules)
         this.setState({
             modules: allModules
         })
@@ -35,7 +37,7 @@ export default class ModuleListContainer extends React.Component {
     }
 
     createModule = () => {
-        this.state.moduleService.createModule(this.state.course.id, {title: "new Module",
+        this.state.moduleService.createModule(this.props.course.id, {title: "new Module",
             lessons: []}).then((result) => {
                 console.log(result)
                 this.setState({id: result.data._id})

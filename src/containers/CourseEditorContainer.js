@@ -40,7 +40,8 @@ export default class CourseEditorContainer extends React.Component {
                 <div className="row">
                     <div className="col-3">
                         <ModuleListContainer modules={this.props.course.modules}
-                        course={this.state.course}/></div>
+                        course={this.props.course}/>
+                    </div>
                     <div className="Lessons col-8 d-flex">
                         <div className="col-12 wbdv-topic-pill-list">
                             <LessonTabsComponent module={this.state.selectedModule} moduleId={this.state.selectedModule.id} key={this.state.selectedModule.id}/>
