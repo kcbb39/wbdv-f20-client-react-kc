@@ -2,7 +2,7 @@ import React from "react";
 import "../course.style.css"
 
 
-const ParagraphWidgetComponent = () => (
+const ParagraphWidgetComponent = (widget, deleteWidget, titleChanged) => (
             <div className="lessonEditor col-12">
                 <div className="contentWidgets form-group row">
                     <div className="coll-11"><h4>Paragraph Widget</h4></div>
@@ -19,12 +19,12 @@ const ParagraphWidgetComponent = () => (
                         </select>
                     </div>
                     <div>
-                        <a href="#" className="btn btn-danger deleteWidget"><i className="fa fa-times-circle"/></a>
+                        <a href="#" className="btn btn-danger deleteWidget" onClick={() => deleteWidget}><i className="fa fa-times-circle"/></a>
                     </div>
                 </div>
                 <div>
                     <div className="col-sm-9 widgetInputs">
-                        <input type="text" placeholder="Paragraph" className="form-control"
+                        <input type="text" placeholder={widget.text} className="form-control"
                                id="paragraph"/>
                     </div>
                 </div>
@@ -37,17 +37,14 @@ const ParagraphWidgetComponent = () => (
                 </div>
                 <div>
                     <div className="col-sm-9 widgetInputs">
-                        <input type="text" placeholder="Widget Name" className="form-control"
+                        <input type="text" placeholder={widget.name} className="form-control"
                                id="paragraphWidgetName"/>
                     </div>
                 </div>
                 <div className="form-group">
                     <label htmlFor="exampleFormControlTextarea1">Paragraph:</label>
                     <textarea className="form-control" id="exampleFormControlTextarea1"
-                              placeholder="Course Editor -
-                                                  The paragraph text property captures the text in the paragraph. Try to use a
-                                                   vertically resizable text box to enter the paragraph text, e.g., textarea. The
-                                                   placeholder should be dummy Paragraph text" rows="3"/>
+                              placeholder={widget.text} rows="3"/>
                 </div>
             </div>
 )

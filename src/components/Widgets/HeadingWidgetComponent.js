@@ -1,7 +1,7 @@
 import React from "react"
 import "../course.style.css"
 
-const HeadingWidgetComponent = () => (
+const HeadingWidgetComponent = (widget, deleteWidget, titleChanged) => (
             <div className="lessonEditor col-12">
                 <div className="contentWidgets form-group row">
                     <div className="coll-11"><h4>Heading Widget</h4></div>
@@ -18,12 +18,12 @@ const HeadingWidgetComponent = () => (
                         </select>
                     </div>
                     <div>
-                        <a href="#" className="btn btn-danger deleteWidget"><i className="fa fa-times-circle"/></a>
+                        <a href="#" className="btn btn-danger deleteWidget" onClick={() => deleteWidget}><i className="fa fa-times-circle"/></a>
                     </div>
                 </div>
                 <div>
                     <div className="col-sm-9 widgetInputs">
-                        <input type="text" placeholder="Heading" className="form-control" id="heading"/>
+                        <input type="text" placeholder={widget.text} className="form-control" id="heading"/>
                     </div>
                 </div>
                 <div className="col-auto widgetInputs">
@@ -35,7 +35,7 @@ const HeadingWidgetComponent = () => (
                 </div>
                 <div>
                     <div className="col-sm-9 widgetInputs">
-                        <input type="text" placeholder="Widget Name" className="form-control"
+                        <input type="text" placeholder={widget.name} className="form-control"
                                id="widgetName"/>
                     </div>
                 </div>
@@ -43,7 +43,7 @@ const HeadingWidgetComponent = () => (
                     <h4>Preview</h4>
                 </div>
                 <div>
-                    <h2>Heading Text</h2>
+                    <h2>{widget.text}</h2>
                 </div>
             </div>
         )

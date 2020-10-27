@@ -6,6 +6,7 @@ import axios from "axios";
 import CourseEditorContainer from "./CourseEditorContainer";
 import "../services/CourseService"
 import CourseService from "../services/CourseService";
+import WidgetService from "../services/WidgetService";
 
 
 export default class CourseManagerContainer extends React.Component {
@@ -16,8 +17,10 @@ export default class CourseManagerContainer extends React.Component {
             selectedCourse: null,
             courses: [],
             courseService: new CourseService(),
-            title: ""
+            title: "",
+            widgets: []
         }
+        this.widgetService = new WidgetService()
     }
     selectCourse = course =>
         this.setState({selectedCourse: course})
@@ -28,6 +31,12 @@ export default class CourseManagerContainer extends React.Component {
         this.setState({
             courses: allCourses
         })
+    }
+
+    getWidgets = async () => {
+        let loWidgets = await this.widgetService.findWidgetsForTopic("321")
+        console.log(loWidgets)
+        this.setState({widgets: loWidgets})
     }
 
     titleChanged(event) {
@@ -71,6 +80,9 @@ export default class CourseManagerContainer extends React.Component {
                         selectedCourse: result.data[0]
                     })
                 })
+        this.widgetService.findWidgetsForTopic("321").then((result) => {
+            this.setState({widgets: result.data})
+        })
     }
 
     render() {
@@ -113,7 +125,7 @@ export default class CourseManagerContainer extends React.Component {
                                courses={this.state.courses}/>}/>
                     <Route path="/course/edit/:id"
                            render={() => <CourseEditorContainer
-                               course={this.state.selectedCourse}/>}/>
+                               course={this.state.selectedCourse} widgets={this.state.widgets}/>}/>
                 </div>
             </Router>
         )

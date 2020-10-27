@@ -3,8 +3,9 @@ import "font-awesome/css/font-awesome.css"
 import ModuleListContainer from "./ModuleListContainer";
 import "../components/course.style.css"
 import LessonTabsComponent from "../components/LessonTabsComponent";
-import WidgetListComponent from "../components/WidgetListComponent";
+import WidgetListContainer from "./WidgetListContainer";
 import TopicPillsComponent from "../components/TopicPillsComponent";
+import WidgetService from "../services/WidgetService";
 
 export default class CourseEditorContainer extends React.Component {
     constructor(props) {
@@ -46,17 +47,9 @@ export default class CourseEditorContainer extends React.Component {
                         <div className="col-12 wbdv-topic-pill-list">
                             <LessonTabsComponent module={this.state.selectedModule} moduleId={this.state.selectedModule.id} key={this.state.selectedModule.id}/>
                             <TopicPillsComponent lesson={this.state.selectedLesson} lessonId={this.state.selectedLesson.id} key={this.state.selectedLesson.id}/>
-                            <div className="editorButtons col-8">
-                                <a href="#" className="btn btn-success">Save</a>
-                                <a href="#" className="btn btn-dark">Preview</a>
-                            </div>
-                            <WidgetListComponent/>
+                            <WidgetListContainer widgets={this.props.widgets}/>
                         </div>
                     </div>
-                </div>
-                <div>
-                    <a href="#" className="btn btn-success btn-lg btn-block deleteWidget"><i
-                        className="fa fa-plus-square"/> Add Widget</a>
                 </div>
             </div>
     )
