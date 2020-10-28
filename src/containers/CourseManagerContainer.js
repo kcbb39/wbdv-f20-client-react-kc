@@ -33,11 +33,6 @@ export default class CourseManagerContainer extends React.Component {
         })
     }
 
-    getWidgets = async () => {
-        let loWidgets = await this.widgetService.findWidgetsForTopic("321")
-        console.log(loWidgets)
-        this.setState({widgets: loWidgets})
-    }
 
     titleChanged(event) {
         this.setState({title: event.target.value});
@@ -80,9 +75,6 @@ export default class CourseManagerContainer extends React.Component {
                         selectedCourse: result.data[0]
                     })
                 })
-        this.widgetService.findWidgetsForTopic("321").then((result) => {
-            this.setState({widgets: result.data})
-        })
     }
 
     render() {

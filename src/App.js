@@ -10,7 +10,7 @@ import CourseManagerContainer from "./containers/CourseManagerContainer";
 function App() {
     return (
         <div className="container">
-            <CourseManagerContainer/>
+            <CourseManagerContainer />
         </div>
     )
 }

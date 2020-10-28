@@ -6,18 +6,29 @@ import LessonTabsComponent from "../components/LessonTabsComponent";
 import WidgetListContainer from "./WidgetListContainer";
 import TopicPillsComponent from "../components/TopicPillsComponent";
 import WidgetService from "../services/WidgetService";
+import axios from "axios";
 
 export default class CourseEditorContainer extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
+            isLoaded: false,
             course: this.props.course,
             selectedModule: this.props.course.modules[0],
-            selectedLesson: this.props.course.modules[0].lessons[0]
+            selectedLesson: this.props.course.modules[0].lessons[0],
+            widgets: []
         }
 
     }
 
+    componentDidMount() {
+        axios.get("https://sleepy-mesa-95547.herokuapp.com/api/topics/321/widgets")
+            .then((response) => {
+                this.setState({
+                    isLoaded: true,
+                    widgets: response.data})})
+
+    }
 
     render() {
         return (
@@ -47,7 +58,7 @@ export default class CourseEditorContainer extends React.Component {
                         <div className="col-12 wbdv-topic-pill-list">
                             <LessonTabsComponent module={this.state.selectedModule} moduleId={this.state.selectedModule.id} key={this.state.selectedModule.id}/>
                             <TopicPillsComponent lesson={this.state.selectedLesson} lessonId={this.state.selectedLesson.id} key={this.state.selectedLesson.id}/>
-                            <WidgetListContainer widgets={this.props.widgets}/>
+                            <WidgetListContainer widgets={this.state.widgets}/>
                         </div>
                     </div>
                 </div>

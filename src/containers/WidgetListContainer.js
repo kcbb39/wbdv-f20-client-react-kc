@@ -1,138 +1,106 @@
 import React from "react";
-import HeadingWidgetComponent from "../components/Widgets/HeadingWidgetComponent";
+import HeadingWidgetComponent from "./HeadingWidgetContainer";
 import ImageWidgetComponent from "../components/Widgets/ImageWidgetComponent";
 import ListWidgetComponent from "../components/Widgets/ListWidgetComponent";
-import ParagraphWidgetComponent from "../components/Widgets/ParagraphWidgetComponent";
+import ParagraphWidgetComponent from "./ParagraphWidgetContainer";
 import WidgetService from "../services/WidgetService";
+import axios from "axios";
+import ParagraphWidget from "./ParagraphWidgetContainer";
+import HeadingWidget from "./HeadingWidgetContainer";
 
 
 export default class WidgetListContainer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            //widgets: this.props.widgets,
-            widgets: [
-                {
-                    name:"Widget 1",
-                    id:"123",
-                    type:"heading",
-                    widgetOrder:1,
-                    text: "Heading Text Ex",
-                    url: "bogus/url.com",
-                    size: 1,
-                    width:1,
-                    height:1,
-                    cssClass:"widgetClass",
-                    style:"cssStyle",
-                    value:"arbitrary"
-                },
-                {
-                    name:"Widget 2",
-                    id:"1234",
-                    type:"paragraph",
-                    widgetOrder:2,
-                    text: "Paragraph Text Ex",
-                    url: "bogus/url/2.com",
-                    size: 1,
-                    width:1,
-                    height:1,
-                    cssClass:"widgetClass",
-                    style:"cssStyle",
-                    value:"arbitrary"
-                },
-                {
-                    name:"Widget 3",
-                    id:"12345",
-                    type:"paragraph",
-                    widgetOrder:2,
-                    text: "Paragraph Text Ex2",
-                    url: "bogus/url/22.com",
-                    size: 1,
-                    width:1,
-                    height:1,
-                    cssClass:"widgetClass",
-                    style:"cssStyle",
-                    value:"arbitrary"
-                }
-            ],
-            widgetService: new WidgetService(),
+            widgets: this.props.widgets,
             topicId: "123",
             widgetId: "",
             widget: {},
-            text:""
+            text:"",
+            preview: false
         }
+        this.widgetService = new WidgetService()
     }
-    
+
+
+    getWidgets = async () => {
+        let allWidgets = await this.widgetService.findWidgetsForTopic(this.state.topicId)
+        this.setState({widgets: allWidgets})
+    }
 
     deleteWidget = async (id) => {
-        await this.state.widgetService.deleteWidget(id)
-        let allWidgets = await this.state.widgetService.findWidgetsForTopic(this.state.topicId)
-        this.setState({
-            widgets: allWidgets
-        })
+        await this.widgetService.deleteWidget(id)
+        await this.getWidgets()
     }
 
     updateWidget = async (widgetId, widget) => {
-        await this.state.widgetService.updateWidget(widgetId, widget)
-        let allWidets = await this.state.widgetService.findWidgetsForTopic(this.state.topicId)
-        this.setState({
-            widgets: allWidets
-        })
-    }
-
-    titleChanged(event) {
-        this.setState({text: {title: event.target.value}});
-        console.log(event.target.value);
+        await this.widgetService.updateWidget(widgetId, widget)
+        await this.getWidgets()
     }
 
     createWidget = async (widget) => {
-        await this.state.widgetService.createWidget(this.state.topicId, widget)
-        let allWidets = await this.state.widgetService.findWidgetsForTopic(this.state.topicId)
-        this.setState({
-            widgets: allWidets
-        })
+        console.log("DID THE THING")
+        await this.widgetService.createWidget(this.state.topicId, widget)
+        await this.getWidgets()
     }
 
     whichWidget(widget){
         if (widget.type=="heading"){
-            return HeadingWidgetComponent(widget, this.deleteWidget())
+            return <HeadingWidget widget={widget} deleteWidget={this.deleteWidget} preview={this.state.preview}/>
         } else {
-            return ParagraphWidgetComponent(widget, this.deleteWidget())
+            return <ParagraphWidget widget={widget} deleteWidget={this.deleteWidget} preview={this.state.preview}/>
         }
     }
 
     renderWidgets() {
-        console.log(this.state.widgets)
-        return this.state.widgets.map((widget) => this.whichWidget(widget))
+        return this.props.widgets.map((widget) => this.whichWidget(widget))
     }
+
+
+    updateWidgets(){
+        //To updtae the widgets, I would pull all of the variables form the input forms, create a widget from that data,
+        //then use it to path to the server. There is a connection that I am not understanding between this file and
+        // the specific widget components, in that I can't call a function from the component on itself from this file.
+    }
+
+    //in each of the components, I would implement two functions, moveUp() and moveDown()
+    //Each one would be onClick of the respective up and down buttons. They would use updateWidget to
+    //increase or decrease the widget order of the individual widget and its neighbors, then rerender the list of
+    // widgets. This is connected to the above comment about the relation of this and the heading and paragraph
+    //elements. 
 
     render() {
         return(
             <div>
                 <div className="editorButtons col-8">
-                    <a href="#" className="btn btn-success" onClick={this.updateWidget(this.state.widgetId, this.state.widget)}>Save</a>
-                    <a href="#" className="btn btn-dark">Preview</a>
+                    <a href="#" className="btn btn-success" onClick={() => this.updateWidgets()}>Save</a>
+                    <a href="#" className="btn btn-dark" onClick={() => {
+                        this.setState({preview: true})
+                        this.render()
+                    }}>Preview </a>
                 </div>
-                <ul>
-                    {this.renderWidgets()}
-                </ul>
                 <div>
-                    <a href="#" className="btn btn-success btn-lg btn-block deleteWidget"><i
-                        className="fa fa-plus-square" onClick={() => this.createWidget({
-                            name:"New Widget",
-                            id:"12345",
-                            type:"heading",
-                            widgetOrder:1,
-                            text: "",
-                            url: "",
-                            size: 1,
-                            width:1,
-                            height:1,
-                            cssClass:"",
-                            style:"",
-                            value:""
-                        }
-                    )}/> Add Widget</a>
+                    {this.renderWidgets()}
+                </div>
+                <div>
+                    <a href="#" className="btn btn-success btn-lg btn-block deleteWidget" onClick={() => this.createWidget(
+                    {
+                                "name": "Widget 5",
+                                "type": "heading",
+                                "widgetOrder": 5,
+                                "text": "Heading Text Ex",
+                                "url": "bogus/url.com",
+                                "size": 1,
+                                "width": 1,
+                                "height": 1,
+                                "cssClass": "widgetClass",
+                                "style": "cssStyle",
+                                "value": "arbitrary",
+                                "id": "1236"
+                            }
+                    )}><i
+                        className="fa fa-plus-square"/> Add Widget</a>
                 </div>
             </div>
         )
